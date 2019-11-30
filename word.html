@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>认名字</title>
+</head>
+<body>
+    <p style="display: block; text-align: center; font-size: 50px;color:blue" id="pressme">按屏幕开始哟</p>
+    <p style="display: block; text-align: center; font-size: 200px" id="word"></p>
+    <script>
+        var words ='谷峰胡皓然赖奕潇刘然子墨' +
+            '马浚铖仁唯权石沐灵汪小植' +
+            '温浩宇' +
+            '鲜卓涵' +
+            '薛云天' +
+            '杨贻程' +
+            '易牧渊' +
+            '殷子王禛张晨曦锦熙添翼云迪郑橙阳' +
+            '曾鱼梵' +
+            '陈笑涵' +
+            '巩辰昕' +
+            '郭笑妍' +
+            '胡开予' +
+            '雷景晰' +
+            '镒绮廖奕菡庞西言谭书雅艾琳陈晨悦潼吴梓菲' +
+            '杨钰涵' +
+            '张奕溪' +
+            '郑雅心' +
+            '周怡辰';
+
+
+        var play = false;
+
+        function onPlay() {
+            if (play) {
+                var wordLen = words.length;
+                var index = parseInt(Math.random()*(wordLen), 10);
+                console.log("index: " + index);
+                console.log(words[index]);
+                var word = words[index];
+                document.getElementById("word").innerHTML=word;
+
+                setTimeout("onPlay()", 200);
+            } else {
+                clearTimeout("onPlay()");
+            }
+        }
+
+        function pressMe() {
+            play = !play;
+            if (play) {
+                document.getElementById("pressme").innerHTML="按屏幕停止哟";
+            } else {
+                document.getElementById("pressme").innerHTML="按屏幕开始哟";
+            }
+            onPlay();
+        }
+
+        document.addEventListener('touchstart', function (ev) {
+            pressMe();
+        });
+
+        document.onkeydown = function (ev) {
+            switch (ev.keyCode) {
+                case 32:
+                    ev.preventDefault();
+                    play = !play;
+                    if (play) {
+                        document.getElementById("pressme").innerHTML="按空格键停止";
+                    } else {
+                        document.getElementById("pressme").innerHTML="按空格键开始";
+                    }
+                    onPlay();
+                    break;
+            }
+        }
+
+    </script>
+</body>
+</html>
